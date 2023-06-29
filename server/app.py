@@ -41,6 +41,9 @@ def load_pinecone_index() -> pinecone.Index:
         environment=PINECONE_ENV,
     )
     index_name = PINECONE_INDEX
+
+    pinecone.create_index(index_name, 128)
+
     if not index_name in pinecone.list_indexes():
         print(pinecone.list_indexes())
         raise KeyError(f"Index '{index_name}' does not exist.")
